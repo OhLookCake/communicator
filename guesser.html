@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Guesser</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Guesser's Screen</h1>
+        <p>Enter the seed number that you and the Cluer agreed on:</p>
+        <input type="number" id="seedInput" placeholder="Enter seed number" />
+        <button onclick="startGuesser()">Submit</button>
+
+        <div id="guesser">
+            <!-- Image A -->
+            <div class="image-container">
+                <svg id="optionA" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <rect width="100" height="100" />
+                </svg>
+                <p class="label">A</p>
+            </div>
+
+            <!-- Image B -->
+            <div class="image-container">
+                <svg id="optionB" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <rect width="100" height="100" />
+                </svg>
+                <p class="label">B</p>
+            </div>
+
+            <!-- Image C -->
+            <div class="image-container">
+                <svg id="optionC" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <rect width="100" height="100" />
+                </svg>
+                <p class="label">C</p>
+            </div>
+
+            <!-- Image D -->
+            <div class="image-container">
+                <svg id="optionD" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <rect width="100" height="100" />
+                </svg>
+                <p class="label">D</p>
+            </div>
+        </div>
+
+        <!-- Result message area -->
+        <h2 id="result"></h2>
+
+        <script src="script.js"></script>
+        <script>
+            function startGuesser() {
+                const seed = document.getElementById("seedInput").value;
+                showGuesserColors(seed);
+            }
+        </script>
+    </body>
+</html>
