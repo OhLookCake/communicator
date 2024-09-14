@@ -25,6 +25,11 @@ svg {
     max-width: 400px; /* Limit maximum width for larger screens */
 }
 
+#cluer {
+    justify-content: center;
+    margin: 40px auto 0; /* Center horizontally and add top margin */
+}
+
 .image-container {
     display: flex;
     flex-direction: column;
