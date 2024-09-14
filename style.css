@@ -11,31 +11,34 @@ h1 {
 svg {
     width: 80px; /* Smaller size for mobile screens */
     height: 80px;
-    margin: 10px;
+    margin: 5px; /* Reduced margin for closer packing */
     cursor: pointer;
 }
 
 #guesser {
-    display: flex;
-    flex-wrap: wrap; /* Allows wrapping to next line */
+    width: 30%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 10px; /* Reduced space between grid items */
     justify-content: center;
+    margin: 40px auto 0; /* Center horizontally and add top margin */
+    max-width: 400px; /* Limit maximum width for larger screens */
 }
 
 .image-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
 }
 
 .label {
-    margin-top: 5px; /* Reduced space for mobile screens */
-    font-size: 16px; /* Smaller font size for mobile screens */
+    margin-top: 3px; /* Reduced space for mobile screens */
+    font-size: 14px; /* Smaller font size for mobile screens */
     font-weight: bold;
 }
 
 #result {
-    font-size: 18px; /* Slightly smaller font size for mobile screens */
+    font-size: 16px; /* Smaller font size for mobile screens */
     margin-top: 20px;
 }
 
@@ -44,6 +47,28 @@ svg {
     svg {
         width: 100px; /* Larger size for tablets and above */
         height: 100px;
+        margin: 8px; /* Adjusted margin for better packing */
+    }
+
+    .label {
+        font-size: 16px;
+    }
+
+    #result {
+        font-size: 20px;
+    }
+
+    #guesser {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        gap: 15px; /* Slightly larger gap */
+    }
+}
+
+@media (min-width: 900px) {
+    svg {
+        width: 120px; /* Larger size for desktop screens */
+        height: 120px;
+        margin: 10px; /* Adjusted margin for better packing */
     }
 
     .label {
@@ -53,19 +78,9 @@ svg {
     #result {
         font-size: 24px;
     }
-}
 
-@media (min-width: 900px) {
-    svg {
-        width: 120px; /* Larger size for desktop screens */
-        height: 120px;
-    }
-
-    .label {
-        font-size: 20px;
-    }
-
-    #result {
-        font-size: 30px;
+    #guesser {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        gap: 20px; /* Standard gap */
     }
 }
