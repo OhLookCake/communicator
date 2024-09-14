@@ -1,14 +1,63 @@
-// Helper function to generate a color based on the seed
-function generateColor(seed) {
-    const hash = [...seed.toString()].reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const randomValue = (hash * 16807) % 256;
-    return `rgb(${randomValue}, ${Math.abs((randomValue + 50) % 256)}, ${Math.abs((randomValue + 100) % 256)})`;
+// Helper function to convert HSV to RGB
+function hsvToRgb(h, s, v) {
+    let f = (n, k = (n + h / 60) % 6) => v - v * s * Math.max(Math.min(k, 4 - k, 1), 0);
+    return `rgb(${Math.round(f(5) * 255)}, ${Math.round(f(3) * 255)}, ${Math.round(f(1) * 255)})`;
 }
 
-// Function to generate slight variations of the color
+// Helper function to generate a color based on the seed (in HSV)
+function generateColor(seed) {
+    const hash = [...seed.toString()].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+    const hue = (hash * 117) % 360; // Hue between 0-360
+    const saturation = 0.8; // Fixed saturation of 80%
+    const value = 0.8; // Fixed brightness of 80%
+
+    return hsvToRgb(hue, saturation, value);
+}
+
+// Function to generate slight variations of the color in HSV
 function generateColorVariation(baseColor, variation) {
     const rgb = baseColor.match(/\d+/g).map(Number);
-    return `rgb(${(rgb[0] + variation) % 256}, ${(rgb[1] + variation) % 256}, ${(rgb[2] + variation) % 256})`;
+    let [r, g, b] = rgb;
+
+    // Convert RGB to HSV for modification
+    let { h, s, v } = rgbToHsv(r, g, b);
+
+    // Slightly adjust the hue for variation
+    h = (h + variation) % 360;
+
+    return hsvToRgb(h, s, v);
+}
+
+// Convert RGB to HSV (needed for generating variations)
+function rgbToHsv(r, g, b) {
+    (r /= 255), (g /= 255), (b /= 255);
+    let max = Math.max(r, g, b),
+        min = Math.min(r, g, b);
+    let h,
+        s,
+        v = max;
+    let d = max - min;
+    s = max === 0 ? 0 : d / max;
+
+    if (max === min) {
+        h = 0; // achromatic
+    } else {
+        switch (max) {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+        h /= 6;
+    }
+
+    return { h: h * 360, s, v };
 }
 
 // Function for Cluer to show the true color
