@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 50px;
+    margin: 20px;
 }
 
 h1 {
@@ -9,14 +9,15 @@ h1 {
 }
 
 svg {
-    width: 100px;
-    height: 100px;
-    margin: 20px;
+    width: 80px; /* Smaller size for mobile screens */
+    height: 80px;
+    margin: 10px;
     cursor: pointer;
 }
 
 #guesser {
     display: flex;
+    flex-wrap: wrap; /* Allows wrapping to next line */
     justify-content: center;
 }
 
@@ -28,12 +29,43 @@ svg {
 }
 
 .label {
-    margin-top: 10px;
-    font-size: 18px;
+    margin-top: 5px; /* Reduced space for mobile screens */
+    font-size: 16px; /* Smaller font size for mobile screens */
     font-weight: bold;
 }
 
 #result {
-    font-size: 24px;
-    margin-top: 30px;
+    font-size: 18px; /* Slightly smaller font size for mobile screens */
+    margin-top: 20px;
+}
+
+/* Media queries for different screen sizes */
+@media (min-width: 600px) {
+    svg {
+        width: 100px; /* Larger size for tablets and above */
+        height: 100px;
+    }
+
+    .label {
+        font-size: 18px;
+    }
+
+    #result {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 900px) {
+    svg {
+        width: 120px; /* Larger size for desktop screens */
+        height: 120px;
+    }
+
+    .label {
+        font-size: 20px;
+    }
+
+    #result {
+        font-size: 30px;
+    }
 }
